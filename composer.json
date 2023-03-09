@@ -1,0 +1,14 @@
+{
+  "config": {
+    "platform": {
+      "php": "7.4.33"
+    }
+  },
+  "scripts": {
+    "phpcs": "phpcs --standard=phpcs.xml"
+  },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "3.*",
+    "wp-coding-standards/wpcs": ">=2.2.0"
+  }
+}

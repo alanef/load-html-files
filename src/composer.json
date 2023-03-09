@@ -1,0 +1,23 @@
+{
+  "name": "alanef/load-html-files",
+  "description": "Wordpress plugin to create posts from html files",
+  "type": "wordpress-plugin",
+  "license": "GPL",
+  "authors": [
+    {
+      "name": "alan",
+      "email": "alan@fullworksplugins.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "repositories": {
+    "plugindonations_lib": {
+      "type": "vcs",
+      "url": "https://github.com/alanef/plugindonation_lib"
+    }
+  },
+  "require": {
+    "php": ">=7.4",
+    "alanef/plugindonation_lib": "dev-master"
+  }
+}

@@ -1,0 +1,7 @@
+.idea/
+dist/
+zipped/
+node_modules/
+vendor/
+src/vendor/
+/vendor/

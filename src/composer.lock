@@ -1,0 +1,60 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "aea2705dd75d8da38fd284553fa56d2c",
+    "packages": [
+        {
+            "name": "alanef/plugindonation_lib",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alanef/plugindonation_lib.git",
+                "reference": "9a1eb110cf94a615326a2dffb440044cdea5cbb7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alanef/plugindonation_lib/zipball/9a1eb110cf94a615326a2dffb440044cdea5cbb7",
+                "reference": "9a1eb110cf94a615326a2dffb440044cdea5cbb7",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AlanEFPluginDonation\\": "/"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "alan",
+                    "email": "alan@fullworks.net"
+                }
+            ],
+            "description": "Module for adding donation support to free plugins",
+            "support": {
+                "source": "https://github.com/alanef/plugindonation_lib/tree/master",
+                "issues": "https://github.com/alanef/plugindonation_lib/issues"
+            },
+            "time": "2023-03-09T16:08:50+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "alanef/plugindonation_lib": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.4"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

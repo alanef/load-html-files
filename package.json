@@ -1,0 +1,29 @@
+{
+  "devDependencies": {
+    "del": "6.1.1",
+    "gulp": "latest",
+    "gulp-directory-sync": "latest",
+    "gulp-freemius-deploy": "^1.0.11",
+    "gulp-notify": "latest",
+    "gulp-remove-lines": "latest",
+    "gulp-rename": "latest",
+    "gulp-sort": "latest",
+    "gulp-util": "latest",
+    "gulp-wp-pot": "latest",
+    "gulp-zip": "latest",
+    "sass": "^1.53.0"
+  },
+  "name": "load-html-files",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Alan Fuller <alan@fullworks.net>",
+  "license": "GPL",
+  "description": "",
+  "dependencies": {
+    "npm": "^6.0.0"
+  }
+}
