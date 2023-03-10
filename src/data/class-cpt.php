@@ -101,6 +101,7 @@ class Cpt {
 			'show_ui'           => true,
 			'show_admin_column' => true,
 			'query_var'         => true,
+			'show_in_rest'      => true,
 			'rewrite'           => array( 'slug' => $options['category_slug'] ),
 		);
 		register_taxonomy( 'html_files_category', array( 'html_files' ), $args );
