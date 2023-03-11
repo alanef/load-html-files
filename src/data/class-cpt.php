@@ -110,8 +110,5 @@ class Cpt {
 			$options['category_slug_changed'] = false;
 			update_option( 'load-html-files-settings', $options );
 		}
-         // delete all taxonomy terms
-		$terms = get_terms( array(  'taxonomy' => 'html_files_category', 'hide_empty' => false, ) );
-         			$a=1;
 	}
 }
