@@ -52,6 +52,6 @@ if ( ! function_exists( 'Load_HTML_Files\run_Load_HTML_Files' ) ) {
 
 	run_load_html_files();
 } else {
-	die( esc_html__( 'Cannot execute as the plugin already exists, if you have a another version installed deactivate that and try again', 'fullworks-anti-spam' ) );
+	die( esc_html__( 'Cannot execute as the plugin already exists, if you have a another version installed deactivate that and try again', 'load-html-files' ) );
 }
 

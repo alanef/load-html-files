@@ -82,6 +82,6 @@ function load_html_files_autoload( $class_name ) {
 		include_once( $filepath );
 	} else {
 		/* translators: %1$s: full path of missing file */
-		wp_die( sprintf( esc_html__( 'The system file attempting to be loaded at %1$s does not exist.', 'fullworks-anti-spam' ), esc_html($filepath ) ) );
+		wp_die( sprintf( esc_html__( 'The system file attempting to be loaded at %1$s does not exist.', 'load-html-files' ), esc_html($filepath ) ) );
 	}
 }
