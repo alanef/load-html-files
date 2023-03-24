@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alanef/plugindonation_lib.git",
-                "reference": "9a1eb110cf94a615326a2dffb440044cdea5cbb7"
+                "reference": "b1fec29bbe5575c3ad8a87a6db7626dee1042a44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alanef/plugindonation_lib/zipball/9a1eb110cf94a615326a2dffb440044cdea5cbb7",
-                "reference": "9a1eb110cf94a615326a2dffb440044cdea5cbb7",
+                "url": "https://api.github.com/repos/alanef/plugindonation_lib/zipball/b1fec29bbe5575c3ad8a87a6db7626dee1042a44",
+                "reference": "b1fec29bbe5575c3ad8a87a6db7626dee1042a44",
                 "shasum": ""
             },
             "default-branch": true,
@@ -41,7 +41,7 @@
                 "source": "https://github.com/alanef/plugindonation_lib/tree/master",
                 "issues": "https://github.com/alanef/plugindonation_lib/issues"
             },
-            "time": "2023-03-09T16:08:50+00:00"
+            "time": "2023-03-22T21:01:53+00:00"
         }
     ],
     "packages-dev": [],
