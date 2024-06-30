@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Example Project" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
 
-    <description>A custom set of rules to check for a WP-ized WordPress project</description>
-    <config name="installed_paths" value="./../../wp-coding-standards/wpcs"/>
+    <description>WP Fullworks</description>
 
     <rule ref="WordPress-Extra">
         <!--
@@ -16,18 +15,10 @@
         The below two examples just show how you can exclude rules.
         They are not intended as advice about which sniffs to exclude.
         -->
-
-
-        <exclude name="WordPress.Arrays"/>
-        <exclude name="WordPress.NamingConventions"/>
-        <exclude name="WordPress.WhiteSpace"/>
-        <exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
-        <exclude name="WordPress.PHP.StrictComparisons.LooseComparison"/>
-        <exclude name="WordPress.PHP.StrictInArray.MissingTrueStrict"/>
-        <exclude name="WordPress.Files.FileName"/>
-        <exclude name="Generic"/>
-        <exclude name="Squiz"/>
-        <exclude name="PSR2"/>
-
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+        <exclude name="Generic.WhiteSpace"/>
+        <exclude name="PEAR.NamingConventions"/>
+        <exclude name="Universal.Files.SeparateFunctionsFromOO"/>
+        <exclude name="Universal.Operators.StrictComparisons"/>
     </rule>
 </ruleset>

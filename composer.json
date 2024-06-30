@@ -2,11 +2,29 @@
   "config": {
     "platform": {
       "php": "7.4.33"
+    },
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
     }
   },
   "scripts": {
-    "phpcs": "phpcs --standard=phpcs.xml"
-  },
+    "post-update-cmd": "composer update -d load-html-files",
+    "phpcs": "phpcs load-html-files -s --standard=phpcs_sec.xml --ignore=*/vendor/*  --extensions=php",
+    "compat:8.3": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.3",
+    "compat:8.2": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.2",
+    "compat:8.1": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.1",
+    "compat:8.0": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.0",
+    "compat:7.4": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 7.4",
+    "compat:5.6": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 5.6",
+    "check": [
+      "@compat:8.3",
+      "@compat:8.2",
+      "@compat:8.1",
+      "@compat:8.0",
+      "@compat:7.4",
+      "@compat:5.6",
+      "@phpcs"
+    ],
   "require-dev": {
     "squizlabs/php_codesniffer": "3.*",
     "wp-coding-standards/wpcs": ">=2.2.0"
