@@ -6,14 +6,24 @@
 * Node
 * NPM
 * Docker
+* Git
+* GitHub account
 
 IDE of your choice
 * PHP Storm (preferred)
 * VScode
 
+## Sorce Control ##
+
+Follow GitHub Flow methosd https://docs.github.com/en/get-started/using-github/github-flow
+
+* External  developers - fork and clone the repository and create a branch 
+
+* Project team developers - create a branch named with the issue tracker ID and text
+
 ## Setup ##
 
-1. at project root  /
+1at project root  /
 * `npm install` to add all the packages
 * `composer update` to add the libraries and dependencies
 
@@ -47,6 +57,10 @@ In the project file run `composer check` to check for any issues
 
 Pushing to GitHub  will also run the check automation
 
+## Create a Pull Request ##
+
+Create a detailed pull request for review
+
 ## Release manager only tasks ##
 
 ### Build for release ###
@@ -61,7 +75,7 @@ merge the version branch with `master`  and push to github
 
 ### Release ###
 
-Move the zip to the local wordpress.org directory and run the script update_wp_free_plugin
+Move the zip to the local wordpress.org directory and run the private script update_wp_free_plugin
 
 
 ### Update this README.md ###
