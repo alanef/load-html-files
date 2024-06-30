@@ -167,6 +167,7 @@ class Core {
 				'post_status'  => 'publish',
 				'post_type'    => 'html_files',
 			);
+			$post = apply_filters('lhfp_insert_post', $post, $file, $parents, $dir, $html );
 			$post_id = wp_insert_post( $post );
 			if ( ! is_wp_error( $post_id ) ) {
 				wp_set_object_terms( $post_id, $parents, 'html_files_category' );
