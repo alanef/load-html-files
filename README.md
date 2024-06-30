@@ -1,6 +1,7 @@
 # Developer Instructions #
 
 ## Prerequisites ##
+You will need the following tools:
 
 * Composer
 * Node
@@ -8,76 +9,55 @@
 * Docker
 * Git
 * GitHub account
-
-IDE of your choice
-* PHP Storm (preferred)
-* VScode
+* An IDE of your choice, such as:
+    * PHP Storm (preferred)
+    * VSCode
 
 ## Source Control ##
+We follow the GitHub Flow. Read more about it [here](https://docs.github.com/en/get-started/using-github/github-flow)
 
-Follow GitHub Flow methosd https://docs.github.com/en/get-started/using-github/github-flow
-
-* External  developers - fork and clone the repository and create a branch 
-
-* Project team developers - create a branch named with the issue tracker ID and text
+* External developers should fork and clone the repository, then create a branch.
+* Project team developers should create a branch named with the issue tracker ID and description.
 
 ## Setup ##
+At project root `/`, execute the following commands:
 
-1at project root  /
-* `npm install` to add all the packages
-* `composer update` to add the libraries and dependencies
-
+* `npm install` to install all the packages
+* `composer update` to install the libraries and dependencies
 
 ## Development ##
+1. Coding Standards:
 
-1. Coding Standards
-* Configure your IDE to use PHP Code sniffer  /phpcs.xml   see  [Configure PHP CS](https://github.com/WordPress/WordPress-Coding-Standards#using-phpcs-and-wpcs-from-within-your-ide)
-* Configure your IDE to adopt WP coding layouts  ( reference your IDE  e.g. [PHPstorm](https://www.jetbrains.com/help/phpstorm/wordpress-aware-coding-assistance.html) )
+    * Configure your IDE to use PHP Code Sniffer with the `/phpcs.xml` file. Follow the instructions [here](https://github.com/WordPress/WordPress-Coding-Standards#using-phpcs-and-wpcs-from-within-your-ide)
+    * Configure your IDE to adopt WP coding layouts. Here is how you can do it in [PHPStorm](https://www.jetbrains.com/help/phpstorm/wordpress-aware-coding-assistance.html)
 
+2. Development should be done in the `/load-html-files` project subdirectory. This is the plugin development source.
+   If you use `wp-env` (recommended), the mapping happens automatically. Otherwise, your development installation should map `/meet-my-team` to `your-local-install/wp-content/plugins/meet-my-team`.
 
-2. Develop in the project sub directory this is the plugin development source `/load-html-files`
+   In PHPStorm, you can use auto deployment mapping, or use a symbolic link or another method such as a local VSCode deployment method for this.
 
-If you use `wp-env`  ( recommended ) then mapping happens automatically otherwise
-your development installation  should map  `/meet-my-team` to `your-local-install/wp-contents/plugins/meet-my-team`
-in PHPstorm you can use auto deployment mapping  or otherwise use a symbolic link or some other method such as a local VScode deployment method
+3. Local Development:
 
-3. Local Development
+   The project is setup so you can use `wp-env` as a local dev environment. You will find a quick start guide [here](https://developer.wordpress.org/block-editor/getting-started/devenv/get-started-with-wp-env/).
 
-The project is set up so you can use  `wp-env` as a local dev environment if you wish, see quick start https://developer.wordpress.org/block-editor/getting-started/devenv/get-started-with-wp-env/
-
-If you need local configuration of wp-env you can use `.wp-env.override.json`, which is ignored by git.
-
-Running `wp-env start --xdebug` in the project route will start a local dev environment with xdebug enabled on
-`localhost:8720` with `/load-html-file` mapped into plugins
-
+   If you require a local configuration of `wp-env`, you can use `.wp-env.override.json`, which is ignored by Git. Running `wp-env start --xdebug` in the project root starts a local dev environment with xdebug enabled on `localhost:8720`. Here, `/load-html-file` is mapped into plugins.
 
 ## Validation ##
-
-In the project file run `composer check` to check for any issues
-
-Pushing to GitHub  will also run the check automation
+Run `composer check` in the project file to check for issues. Pushing to GitHub will trigger the check automation.
 
 ## Create a Pull Request ##
+Create a detailed pull request for review.
 
-Create a detailed pull request for review
+## Release Manager Only Tasks ##
+### Build for Release ###
+Ensure versions are updated in the root PHP and readme.txt.
 
-## Release manager only tasks ##
+Run `gulp build`. This command copies everything from `/load-html-file` to `/dist`, removes unnecessary development code, and creates a zip in `/zipped`.
 
-### Build for release ###
-
-Ensure versions are updated in root php and readme.txt
-
-run `gulp build` - copies all /load-html-file into /dist and cleans it up removing unneeded dev code etc and creates a zip in /zipped
-
-commit the branch and tag with the release e.g. 5.4.5
-
-merge the version branch with `master`  and push to github
+Then, commit the branch and tag with the release e.g. `5.4.5`. Merge the version branch with `master` and push it to GitHub.
 
 ### Release ###
-
-Move the zip to the local wordpress.org directory and run the private script update_wp_free_plugin
-
+Move the zip to the local `wordpress.org` directory and run the private script `update_wp_free_plugin`.
 
 ### Update this README.md ###
-
-Update this file if process changes or can be clarified or extended in anyway
+Periodically update this file if process changes, or if more clarity or extended information is required.
