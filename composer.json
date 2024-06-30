@@ -24,9 +24,12 @@
       "@compat:7.4",
       "@compat:5.6",
       "@phpcs"
-    ],
+    ]
+  },
   "require-dev": {
     "squizlabs/php_codesniffer": "3.*",
-    "wp-coding-standards/wpcs": ">=2.2.0"
+    "wp-coding-standards/wpcs": "^3.0",
+    "phpcompatibility/phpcompatibility-wp": "*",
+    "phpstan/phpstan": "*"
   }
 }
