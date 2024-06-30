@@ -16,6 +16,8 @@ class Admin_Settings extends Admin_Pages {
 	protected $settings_page_id = 'html_files_page_load-html-files-settings';  // top level
 	protected $option_group = 'load-html-files';
 	protected $settings_title;
+	/** @var PluginDonation $donation */
+	private PluginDonation $donation;
 
 
 	public function __construct() {
@@ -89,7 +91,7 @@ class Admin_Settings extends Admin_Pages {
 		?>
         <table class="form-table">
             <tbody>
-            <?php $this->donation->display(); ?>
+			<?php $this->donation->display(); ?>
             <tr>
                 <p><?php esc_html_e( 'This plugin periodically ( every 5 minutes) checks the unprocessed folder (wp-content/uploads/html_files/unprocessed ) for any files. The files can be in folders / subfolders', 'load-html-files' ); ?>
                 </p>

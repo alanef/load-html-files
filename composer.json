@@ -22,7 +22,6 @@
       "@compat:8.1",
       "@compat:8.0",
       "@compat:7.4",
-      "@compat:5.6",
       "@phpcs"
     ]
   },
