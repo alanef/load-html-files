@@ -13,7 +13,7 @@ IDE of your choice
 * PHP Storm (preferred)
 * VScode
 
-## Sorce Control ##
+## Source Control ##
 
 Follow GitHub Flow methosd https://docs.github.com/en/get-started/using-github/github-flow
 
