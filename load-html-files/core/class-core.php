@@ -226,7 +226,16 @@ class Core {
 	}
 
 	private function post_exists_by_title( $title ) {
-		$post = get_page_by_title( $title, OBJECT, 'html_files' );
+		$args = array(
+			'name'        => $title,
+			'post_type'   => 'html_files',
+			'post_status' => 'publish',
+			'numberposts' => 1
+		);
+		$posts = get_posts($args);
+
+// $posts contains the post objects
+		$post = $posts[0];  // $post is the post obj
 
 		return $post ? $post->ID : false;
 	}
