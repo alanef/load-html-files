@@ -14,10 +14,15 @@
     "plugindonations_lib": {
       "type": "vcs",
       "url": "https://github.com/alanef/plugindonation_lib"
+    },
+    "alanef/wp_autoloader": {
+      "type": "vcs",
+      "url": "https://github.com/alanef/wp_autoloader"
     }
   },
   "require": {
     "php": ">=7.4",
-    "alanef/plugindonation_lib": "dev-master"
+    "alanef/plugindonation_lib": "dev-master",
+    "alanef/wp_autoloader": "dev-main"
   }
 }

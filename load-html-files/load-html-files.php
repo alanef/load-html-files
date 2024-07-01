@@ -22,6 +22,7 @@ namespace Load_HTML_Files;
 
 
 // If this file is called directly, abort.
+use Fullworks_WP_Autoloader\AutoloaderPlugin;
 use Load_HTML_Files\Control\Plugin;
 
 if ( ! defined( 'WPINC' ) ) {
@@ -36,8 +37,9 @@ if ( ! function_exists( 'Load_HTML_Files\run_Load_HTML_Files' ) ) {
 	define( 'LOAD_HTML_FILES_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 	define( 'LOAD_HTML_FILES_PLUGIN_VERSION', '1.0.0' );
 
-	require_once LOAD_HTML_FILES_PLUGIN_DIR . 'control/autoloader.php';
+//	require_once LOAD_HTML_FILES_PLUGIN_DIR . 'control/autoloader.php';
 	require_once LOAD_HTML_FILES_PLUGIN_DIR . 'vendor/autoload.php';
+	new AutoloaderPlugin(__NAMESPACE__, __DIR__);
 
 	function run_load_html_files() {
 
