@@ -123,8 +123,16 @@ class Core {
 	public function create_post( $wp_filesystem, $file, $parents, $dir ) {
 // get the file contents
 		$html = $wp_filesystem->get_contents( $file );
+		// generate slug -- filename minus extension - jm
+		$path_parts = pathinfo($file);
+		$slug = $path_parts['filename'];
 		// get the title
 		$title = $this->get_text_between_tags( $html, 'h1' );
+		// use title tag if no h1 tag - jm
+		// if this doesn't yield a valid field, then maybe take 1st 10 char of <p>
+		if ( not strlen($title) ) {
+			$title = $this->get_text_between_tags( $html, 'title' );
+		}
 		$title = htmlspecialchars( sanitize_text_field( $title[0] ) );
 		// remove the h1 tags
 		$html = $this->remove_tag_from_html( $html, 'h1' );
@@ -145,11 +153,11 @@ class Core {
 			// update the post
 			// set post date to now
 			$post = array(
-				'ID'           => $post_id,
-				'post_content' => $content,
-				'post_date'    => gmdate( 'Y-m-d H:i:s' ),
-				'post_date_gmt' => gmdate( 'Y-m-d H:i:s' ),
-				'post_modified' => gmdate( 'Y-m-d H:i:s' ),
+				'ID'           		=> $post_id,
+				'post_content' 		=> $content,
+				'post_date'    		=> gmdate( 'Y-m-d H:i:s' ),
+				'post_date_gmt' 	=> gmdate( 'Y-m-d H:i:s' ),
+				'post_modified'     => gmdate( 'Y-m-d H:i:s' ),
 				'post_modified_gmt' => gmdate( 'Y-m-d H:i:s' ),
 			);
 			wp_update_post( $post );
@@ -161,11 +169,13 @@ class Core {
 		} else {
 
 			// create the post
+			// added slug - jm
 			$post    = array(
-				'post_title'   => $title,
-				'post_content' => $content,
-				'post_status'  => 'publish',
-				'post_type'    => 'html_files',
+				'post_title'	=> $title,
+				'post_content'	=> $content,
+				'post_status'	=> 'publish',
+				'post_type'		=> 'html_files',
+				'post_name'		=> $slug,
 			);
 			$post = apply_filters('lhfp_insert_post', $post, $file, $parents, $dir, $html );
 			$post_id = wp_insert_post( $post );
