@@ -130,8 +130,9 @@ class Core {
 		$title = $this->get_text_between_tags( $html, 'h1' );
 		// use title tag if no h1 tag - jm
 		// if this doesn't yield a valid field, then maybe take 1st 10 char of <p>
-		if ( not strlen($title) )
+		if ( not strlen($title) ) {
 			$title = $this->get_text_between_tags( $html, 'title' );
+		}
 		$title = htmlspecialchars( sanitize_text_field( $title[0] ) );
 		// remove the h1 tags
 		$html = $this->remove_tag_from_html( $html, 'h1' );
