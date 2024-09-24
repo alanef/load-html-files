@@ -1,6 +1,6 @@
 === Load HTML Files ===
 Contributors: alanfuller
-Tags: load html files, load html, html files,import html, html importer, load file, load sailwave, sailwave, sailwave import
+Tags: load html files, load html, html files,import html, sailwave
 Donate link: https://ko-fi.com/wpalan
 Requires at least: 4.9
 Tested up to: 6.6
