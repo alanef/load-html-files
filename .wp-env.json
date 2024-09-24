@@ -1,5 +1,4 @@
 {
-  "core": "WordPress/WordPress#master",
   "plugins": ["./load-html-files"],
   "port": 8720,
   "testsPort": 8721,

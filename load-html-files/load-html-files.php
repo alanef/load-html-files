@@ -46,6 +46,10 @@ if ( ! function_exists( 'Load_HTML_Files\run_Load_HTML_Files' ) ) {
 		register_activation_hook( __FILE__, array( '\Load_HTML_Files\Control\Activator', 'activate' ) );
 		register_deactivation_hook( __FILE__, array( '\Load_HTML_Files\Control\Deactivator', 'deactivate' ) );
 		register_uninstall_hook( __FILE__, array( '\Load_HTML_Files\Control\Uninstall', 'uninstall' ) );
+		new \Fullworks_Free_Plugin_Lib\Main('load-html-files/load-html-files.php',
+			admin_url( 'edit.php?post_type=html_files&page=load-html-files-settings' ),
+			'LHF-Free',
+			'html_files_page_load-html-files-settings');
 
 		$plugin = new Plugin( );
 		$plugin->run();
