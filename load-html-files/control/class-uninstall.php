@@ -25,7 +25,7 @@ class Uninstall {
 		// register the term so we can then delete it
 		register_taxonomy( 'html_files_category', 'html_files' );
 		// remove all custom taxonomies
-		$terms = get_terms( 'html_files_category', array( 'hide_empty' => false ) );
+		$terms = get_terms( 'html_files_category' );
 		foreach ( $terms as $term ) {
 			wp_delete_term( $term->term_id, 'html_files_category' );
 		}

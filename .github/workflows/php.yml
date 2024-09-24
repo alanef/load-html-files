@@ -53,6 +53,8 @@ jobs:
         uses: wordpress/plugin-check-action@v1
         with:
           build-dir: './dist'
-          exclude-directories: 'vendor/composer, vendor/bin'
+          exclude-directories: |
+            'vendor/composer'
+            'vendor/bin'
           exclude-checks: |
             plugin_header_text_domain
