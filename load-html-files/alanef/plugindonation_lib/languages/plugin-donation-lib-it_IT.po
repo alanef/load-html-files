@@ -1,0 +1,135 @@
+# Copyright (C) 2021 plugin-donation-lib
+# This file is distributed under the same license as the plugin-donation-lib package.
+msgid ""
+msgstr ""
+"Project-Id-Version: plugin-donation-lib\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;"
+"_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;"
+"esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.2.1\n"
+"Last-Translator: \n"
+"Language: it_IT\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: PluginDonation.php:285
+msgid "Gift a Donation"
+msgstr "Fai una donazione"
+
+#: PluginDonation.php:286
+msgid ""
+"Hi, I'm Alan and I built this free plugin to solve problems I had, and I "
+"hope it solves your problem too."
+msgstr ""
+"Ciao, sono Alan ed ho realizzato questo plugin gratuito per risolvere dei "
+"problemi che avevo incontrato: spero possa risolvere anche i vostri"
+
+#: PluginDonation.php:287
+msgid ""
+"It would really help me know that others find it useful and a great way of "
+"doing this is to gift me a small donation"
+msgstr ""
+"Mi sarebbe di grande aiuto sapere che altre persone lo hanno trovato utile "
+"ed un ottimo modo per dimostrarlo è farmi una piccola donazione"
+
+#: PluginDonation.php:288
+msgid "Gift a donation: select your desired option"
+msgstr "Fai una donazione: seleziona l’opzione desiderata"
+
+#: PluginDonation.php:289
+msgid "My Bitcoin donation wallet"
+msgstr "Il mio portafoglio per le donazioni di Bitcoin"
+
+#: PluginDonation.php:290
+msgid "Gift a donation via PayPal"
+msgstr "Fai una donazione con PayPal"
+
+#: PluginDonation.php:291
+msgid "My Bitcoin Cash address"
+msgstr "Il mio indirizzo Bitcoin Cash"
+
+#: PluginDonation.php:292
+msgid "My Ethereum address"
+msgstr "Il mio indirizzo Ethereum"
+
+#: PluginDonation.php:293
+msgid "My Dogecoin address"
+msgstr "Il mio indirizzo Dogecoin"
+
+#: PluginDonation.php:294
+msgid "Contribute"
+msgstr "Contribuisci"
+
+#: PluginDonation.php:295
+msgid "Contribute to the Open Source Project in other ways"
+msgstr "Contribuisci in altri modi all Open Source Project"
+
+#: PluginDonation.php:296
+msgid "Submit a review"
+msgstr "Invia una recensione"
+
+#: PluginDonation.php:297
+msgid "Translate to your language"
+msgstr "Traduci nella tua lingua"
+
+#: PluginDonation.php:298
+msgid "SUBMIT A REVIEW"
+msgstr "Invia una recensione"
+
+#: PluginDonation.php:299
+msgid ""
+"If you are happy with the plugin then we would love a review. Even if you "
+"are not so happy feedback is always useful, but if you have issues we would "
+"love you to make a support request first so we can try and help."
+msgstr ""
+"Se sei soddisfatto del plugin ci piacerebbe leggere la tua recensione. "
+"Anche se non sei pienamente soddisfatto il tuo feedback sarà molto utile, "
+"ma se hai incontrato dei problemi saremo felici di ricevere prima la tua "
+"richiesta di supporto così da poter provare ad aiutarti"
+
+#: PluginDonation.php:300
+msgid "SUPPORT FORUM"
+msgstr "FORUM PER IL SUPPORTO"
+
+#: PluginDonation.php:301
+msgid ""
+"Providing some translations for a plugin is very easy and can be done via "
+"the WordPress system. You can easily contribute to the community and you "
+"don't need to translate it all."
+msgstr ""
+"Fornire alcune traduzioni per il plugin è molto semplice e può esser fatto "
+"tramite il sistema WordPress. Puoi essere facilmente d’aiuto alla community "
+"e non è necessario che tu traduca tutto"
+
+#: PluginDonation.php:302
+msgid "TRANSLATE INTO YOUR LANGUAGE"
+msgstr "Traduci nella tua lingua"
+
+#: PluginDonation.php:303
+msgid ""
+"As an open source project you are welcome to contribute to the development "
+"of the software if you can. The development plugin is hosted on GitHub."
+msgstr ""
+"Trattandosi di un progetto Open Source, il tuo auto allo sviluppo del "
+"software è molto apprezzato. Il development plugin è ospitato su GitHub."
+
+#: PluginDonation.php:304
+msgid "CONTRIBUTE ON GITHUB"
+msgstr "Contribuisci su Github"
+
+#: PluginDonation.php:305
+msgid "Get Support"
+msgstr "Ricevi supporto"
+
+#: PluginDonation.php:306
+msgid "WordPress SUPPORT FORUM"
+msgstr "Forum di supporto su WordPress"

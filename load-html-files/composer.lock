@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/alanef/free_plugin_lib.git",
-                "reference": "7c6a694aca2ce60acd7f502abcc1d602fdfb55e7"
+                "reference": "7de57262c2ae380a756060fad089e8c84204e974"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alanef/free_plugin_lib/zipball/7c6a694aca2ce60acd7f502abcc1d602fdfb55e7",
-                "reference": "7c6a694aca2ce60acd7f502abcc1d602fdfb55e7",
+                "url": "https://api.github.com/repos/alanef/free_plugin_lib/zipball/7de57262c2ae380a756060fad089e8c84204e974",
+                "reference": "7de57262c2ae380a756060fad089e8c84204e974",
                 "shasum": ""
             },
             "default-branch": true,
@@ -41,7 +41,7 @@
                 "source": "https://github.com/alanef/free_plugin_lib/tree/main",
                 "issues": "https://github.com/alanef/free_plugin_lib/issues"
             },
-            "time": "2024-09-09T21:22:23+00:00"
+            "time": "2024-09-24T19:12:25+00:00"
         },
         {
             "name": "alanef/plugindonation_lib",

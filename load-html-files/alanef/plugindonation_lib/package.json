@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "gulp": "latest",
+    "gulp-notify": "latest",
+    "gulp-sort": "latest",
+    "gulp-util": "latest",
+    "gulp-wp-pot": "latest"
+  },
+  "name": "plugindonation_lib",
+  "version": "1.6"
+}

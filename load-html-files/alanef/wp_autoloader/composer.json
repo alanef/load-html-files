@@ -1,0 +1,16 @@
+{
+  "name": "alanef/wp_autoloader",
+  "description": "A custom autoloader to comply with WP class file names",
+  "type": "library",
+  "minimum-stability": "stable",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "alan",
+      "email": "alan@fullworks.net"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"Fullworks_WP_Autoloader\\": "src/"}
+  }
+}
