@@ -89,7 +89,7 @@ class Main {
 
 	public function render_opt_in_page() {
         $acc="aaa";
-        echo $acc;
+        printf("%s",$acc);
 		?>
             <div class="wrap">
         <div class="fpl-wrap">
