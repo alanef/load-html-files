@@ -22,13 +22,6 @@ class Admin_Settings extends Admin_Pages {
 
 	public function __construct() {
 		$this->settings_title = esc_html__( 'Load HTML files', 'load-html-files' );
-		$this->donation       = new PluginDonation(
-			'load-html-files',
-			$this->settings_page_id,
-			'load-html-files/load-html-files.php',
-			admin_url( 'edit.php?post_type=html_files&page=load-html-files-settings' ),
-			$this->settings_title
-		);
 		parent::__construct();
 	}
 
@@ -91,7 +84,9 @@ class Admin_Settings extends Admin_Pages {
 		?>
         <table class="form-table">
             <tbody>
-			<?php $this->donation->display(); ?>
+            <tr>
+			<?php do_action('ffpl_ad_display') ?>
+            </tr>
             <tr>
                 <p><?php esc_html_e( 'This plugin periodically ( every 5 minutes) checks the unprocessed folder (wp-content/uploads/html_files/unprocessed ) for any files. The files can be in folders / subfolders', 'load-html-files' ); ?>
                 </p>
