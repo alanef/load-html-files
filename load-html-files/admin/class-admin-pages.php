@@ -19,7 +19,9 @@ class Admin_Pages {
 	}
 
 
+
 	public function settings_setup() {
+
 
 		$this->register_settings();
 		/* Vars */
