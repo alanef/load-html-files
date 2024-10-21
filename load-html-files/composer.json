@@ -11,10 +11,6 @@
   ],
   "minimum-stability": "stable",
   "repositories": {
-    "plugindonations_lib": {
-      "type": "vcs",
-      "url": "https://github.com/alanef/plugindonation_lib"
-    },
     "free_plugin_lib": {
       "type": "vcs",
       "url": "https://github.com/alanef/free_plugin_lib"
@@ -26,7 +22,6 @@
   },
   "require": {
     "php": ">=7.4",
-    "alanef/plugindonation_lib": "dev-master",
     "alanef/free_plugin_lib": "dev-main",
     "alanef/wp_autoloader": "dev-main"
   }
