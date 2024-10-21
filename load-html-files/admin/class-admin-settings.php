@@ -1,7 +1,7 @@
 <?php
 
 namespace Load_HTML_Files\Admin;
-;
+
 use Load_HTML_Files\Admin\Admin_Pages;
 use Load_HTML_Files\Data\Cpt;
 
@@ -81,6 +81,9 @@ class Admin_Settings extends Admin_Pages {
 		?>
         <table class="form-table">
             <tbody>
+            <tr>
+			<?php do_action('ffpl_ad_display') ?>
+            </tr>
             <tr>
                 <p><?php esc_html_e( 'This plugin periodically ( every 5 minutes) checks the unprocessed folder (wp-content/uploads/html_files/unprocessed ) for any files. The files can be in folders / subfolders', 'load-html-files' ); ?>
                 </p>

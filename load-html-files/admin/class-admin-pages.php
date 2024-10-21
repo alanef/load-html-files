@@ -19,7 +19,7 @@ class Admin_Pages {
 	}
 
 	public function settings_setup() {
-        
+
 		$this->register_settings();
 		/* Vars */
 		$page_hook_id = $this->settings_page_id;
