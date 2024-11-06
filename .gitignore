@@ -6,3 +6,4 @@ vendor/
 src/vendor/
 /vendor/
 .wp-env.override.json
+/.codebuddy/
