@@ -12,8 +12,7 @@
     }
   },
   "scripts": {
-    "post-update-cmd": [ "composer update -d load-html-files",
-                         "npx gulp build" ],
+    "post-update-cmd": [ "composer update -d load-html-files"],
     "phpcs": "phpcs load-html-files -s --standard=phpcs_sec.xml --ignore=*/vendor/*  --extensions=php",
     "compat:8.3": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.3",
     "compat:8.2": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.2",
@@ -35,5 +34,8 @@
     "wp-coding-standards/wpcs": "^3.0",
     "phpcompatibility/phpcompatibility-wp": "*",
     "phpstan/phpstan": "*"
+  },
+  "require": {
+    "alanef/free_plugin_lib": "*"
   }
 }

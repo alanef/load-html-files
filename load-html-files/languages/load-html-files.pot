@@ -1,224 +1,260 @@
-# Copyright (C) 2024 load-html-files
-# This file is distributed under the same license as the load-html-files package.
+# Copyright (C) 2025 Alan
+# This file is distributed under the GPL-3.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: load-html-files\n"
+"Project-Id-Version: Load HTML Files 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/load-html-files\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-09-25 14:53+0000\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2025-01-28T22:39:44+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.10.0\n"
+"X-Domain: load-html-files\n"
 
-#: load-html-files/load-html-files.php:61
-msgid "Cannot execute as the plugin already exists, if you have a another version installed deactivate that and try again"
+#. Plugin Name of the plugin
+#: load-html-files.php
+msgid "Load HTML Files"
 msgstr ""
 
-#: load-html-files/admin/class-admin-pages.php:53
+#. Plugin URI of the plugin
+#: load-html-files.php
+msgid "https://fullworksplugins.com/products/load-html-files/"
+msgstr ""
+
+#. Description of the plugin
+#: load-html-files.php
+msgid "Autocreate posts from HTML files"
+msgstr ""
+
+#. Author of the plugin
+#: load-html-files.php
+msgid "Alan"
+msgstr ""
+
+#. Author URI of the plugin
+#: load-html-files.php
+msgid "https://fullworksplugins.com/"
+msgstr ""
+
+#: admin/class-admin-pages.php:53
 msgid "Are you sure want to do this?"
 msgstr ""
 
-#: load-html-files/admin/class-admin-pages.php:137
+#: admin/class-admin-pages.php:137
 msgid "Save Options"
 msgstr ""
 
-#: load-html-files/admin/class-admin-pages.php:162
+#: admin/class-admin-pages.php:162
 msgid "Save"
 msgstr ""
 
-#: load-html-files/admin/class-admin-pages.php:173
+#: admin/class-admin-pages.php:173
 msgid "Settings reset to defaults."
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:21
+#: admin/class-admin-settings.php:21
 msgid "Load HTML files"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:64
+#: admin/class-admin-settings.php:64
 msgid "How to use"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:72
+#: admin/class-admin-settings.php:72
 msgid "Settings"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:85
+#: admin/class-admin-settings.php:88
 msgid "This plugin periodically ( every 5 minutes) checks the unprocessed folder (wp-content/uploads/html_files/unprocessed ) for any files. The files can be in folders / subfolders"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:87
+#: admin/class-admin-settings.php:90
 msgid "When a file is found it reads it and creates a new custom post using the html content, stripping any javascript and css. The post title is tehH1 heading from the file"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:89
+#: admin/class-admin-settings.php:92
 msgid "Folders and subfolders are converted into hierarchical categories"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:93
+#: admin/class-admin-settings.php:96
 msgid "Files"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:95
+#: admin/class-admin-settings.php:98
 msgid "The input files are expected to be valid HTML pages, that you send to your server, e.g. by SFTP. If you send a file witheth same H1 tag as aprevious it will overwrite the revious. This is deliberate to allow updated versions."
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:99
+#: admin/class-admin-settings.php:102
 msgid "Housekeeping"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:102
+#: admin/class-admin-settings.php:105
 msgid "Once a file is converted to a custom post it is moved into tehe processed folder. If you process lots of files you may want to 93manually delete them occasionally"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:154
+#: admin/class-admin-settings.php:157
 msgid "Generic Name"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:162
+#: admin/class-admin-settings.php:165
 msgid "Name used in admin, default is \"HTML files\" change this to be relevant to your use"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:167
+#: admin/class-admin-settings.php:170
 msgid "Generic Name - Singluar"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:175
+#: admin/class-admin-settings.php:178
 msgid "Singular version of the name, default is \"HTML file\" change this to be relevant to your use"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:180
+#: admin/class-admin-settings.php:183
 msgid "Files Slug"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:188
+#: admin/class-admin-settings.php:191
 msgid "The slug is used in the paths to the resulting posts generated from files"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:193
+#: admin/class-admin-settings.php:196
 msgid "Category Slug"
 msgstr ""
 
-#: load-html-files/admin/class-admin-settings.php:201
+#: admin/class-admin-settings.php:204
 msgid "The slug is used in the paths to the resulting categories generated by folder structures"
 msgstr ""
 
-#: load-html-files/admin/class-admin.php:44
+#: admin/class-admin.php:44
 msgid "Load Sailwave Custom Schedule"
 msgstr ""
 
-#: load-html-files/admin/class-admin.php:55
+#: admin/class-admin.php:55
 msgid "HTML Editor"
 msgstr ""
 
 #. translators: %1$s: full path of missing file
-#: load-html-files/control/autoloader.php:85
+#: control/autoloader.php:85
 msgid "The system file attempting to be loaded at %1$s does not exist."
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:27, load-html-files/data/class-cpt.php:28
+#: data/class-cpt.php:27
+#: data/class-cpt.php:28
 msgctxt "HTML File"
 msgid "Add New"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:29
+#: data/class-cpt.php:29
 msgctxt "HTML File"
 msgid "New"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:30
+#: data/class-cpt.php:30
 msgctxt "HTML File"
 msgid "Edit"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:31
+#: data/class-cpt.php:31
 msgctxt "HTML File"
 msgid "View"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:32
+#: data/class-cpt.php:32
 msgctxt "HTML File"
 msgid "All"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:33, load-html-files/data/class-cpt.php:79
+#: data/class-cpt.php:33
+#: data/class-cpt.php:79
 msgctxt "HTML Files"
 msgid "Search"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:34
+#: data/class-cpt.php:34
 msgctxt "HTML File"
 msgid "Parent"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:35, load-html-files/data/class-cpt.php:37
+#: data/class-cpt.php:35
+#: data/class-cpt.php:37
 msgctxt "HTML Files"
 msgid "No"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:36
+#: data/class-cpt.php:36
 msgctxt "HTML Files"
 msgid "found."
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:38
+#: data/class-cpt.php:38
 msgctxt "HTML Files"
 msgid "found in trash."
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:42
+#: data/class-cpt.php:42
 msgid "Description."
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:77, load-html-files/data/class-cpt.php:80, load-html-files/data/class-cpt.php:82, load-html-files/data/class-cpt.php:96
+#: data/class-cpt.php:77
+#: data/class-cpt.php:80
+#: data/class-cpt.php:82
+#: data/class-cpt.php:96
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:78
+#: data/class-cpt.php:78
 msgctxt "taxonomy singular name"
 msgid "HTML Files Category"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:81
+#: data/class-cpt.php:81
 msgctxt "HTML Files"
 msgid "All"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:83, load-html-files/data/class-cpt.php:85
+#: data/class-cpt.php:83
+#: data/class-cpt.php:85
 msgctxt "HTML Files"
 msgid "Parent"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:84, load-html-files/data/class-cpt.php:88, load-html-files/data/class-cpt.php:90, load-html-files/data/class-cpt.php:92, load-html-files/data/class-cpt.php:94
+#: data/class-cpt.php:84
+#: data/class-cpt.php:88
+#: data/class-cpt.php:90
+#: data/class-cpt.php:92
+#: data/class-cpt.php:94
 msgctxt "taxonomy general name"
 msgid "Category"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:86
+#: data/class-cpt.php:86
 msgctxt "taxonomy general name"
 msgid "Category:"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:87
+#: data/class-cpt.php:87
 msgctxt "HTML Files"
 msgid "Edit"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:89
+#: data/class-cpt.php:89
 msgctxt "HTML Files"
 msgid "Update"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:91
+#: data/class-cpt.php:91
 msgctxt "HTML Files"
 msgid "Add New"
 msgstr ""
 
-#: load-html-files/data/class-cpt.php:93
+#: data/class-cpt.php:93
 msgctxt "HTML Files"
 msgid "New"
+msgstr ""
+
+#: load-html-files.php:61
+msgid "Cannot execute as the plugin already exists, if you have a another version installed deactivate that and try again"
 msgstr ""
