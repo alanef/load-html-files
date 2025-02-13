@@ -36,7 +36,7 @@ class Admin_Settings extends Admin_Pages {
 			$this->option_group,                         /* Option Group */
 			'load-html-files-settings',
 			array(
-				'sanitize_callback' => array( $this, 'sanitize_settings' ),
+				'sanitize_callback' => '@sanitize_settings',
 				'default' => NULL,
 			)
 		);
@@ -54,7 +54,7 @@ class Admin_Settings extends Admin_Pages {
 			$this->option_group,                         /* Option Group */
 			"{$this->option_group}-reset",
 			array(
-				'sanitize_callback' => array( $this, 'reset_sanitize' ),
+				'sanitize_callback' => '@reset_sanitize',
 				'default' => NULL,
 			) /* Sanitize Callback */
 		);

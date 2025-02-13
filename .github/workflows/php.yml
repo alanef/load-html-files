@@ -45,7 +45,7 @@ jobs:
       - name: Run phpcs suit
         run: composer run-script check
 
-      - name: Run Gulp build
+      - name: Composer install for load-html-files
         run: composer install -d load-html-files --no-dev
       - name: Run plugin check
         uses: wordpress/plugin-check-action@v1
