@@ -17,7 +17,7 @@
     ],
     "build": [
       "rm -rf zipped",
-      "@composer install --no-dev",
+      "@composer install -d load-html-files --no-dev",
       "mkdir -p zipped",
       "zip -r zipped/load-html-files-free.zip load-html-files"
     ],
