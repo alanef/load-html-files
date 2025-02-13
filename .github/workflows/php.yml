@@ -44,8 +44,6 @@ jobs:
 
       - name: Run phpcs suit
         run: composer run-script check
-      - name: Add vendor
-        run: composer update
 
       - name: Run Gulp build
         run: composer run build
