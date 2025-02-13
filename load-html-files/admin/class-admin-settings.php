@@ -34,8 +34,11 @@ class Admin_Settings extends Admin_Pages {
 		/* Register our setting. */
 		register_setting(
 			$this->option_group,                         /* Option Group */
-			'load-html-files-settings',                   /* Option Name */
-			array( $this, 'sanitize_settings' )          /* Sanitize Callback */
+			'load-html-files-settings',
+			array(
+				'sanitize_callback' => array( $this, 'sanitize_settings' ),
+				'default' => NULL,
+			)
 		);
 
 		/* Add settings menu page */
@@ -49,8 +52,11 @@ class Admin_Settings extends Admin_Pages {
 		);
 		register_setting(
 			$this->option_group,                         /* Option Group */
-			"{$this->option_group}-reset",                   /* Option Name */
-			array( $this, 'reset_sanitize' )          /* Sanitize Callback */
+			"{$this->option_group}-reset",
+			array(
+				'sanitize_callback' => array( $this, 'reset_sanitize' ),
+				'default' => NULL,
+			) /* Sanitize Callback */
 		);
 	}
 
