@@ -1,0 +1,112 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "ca1fa99cf78edad2426f5e5a5df84a2c",
+    "packages": [
+        {
+            "name": "alanef/free_plugin_lib",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alanef/free_plugin_lib.git",
+                "reference": "43f4f538d247dd696a47ed08e4a5b4dde15c7daa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alanef/free_plugin_lib/zipball/43f4f538d247dd696a47ed08e4a5b4dde15c7daa",
+                "reference": "43f4f538d247dd696a47ed08e4a5b4dde15c7daa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "codedungeon/phpunit-result-printer": "^0.32",
+                "phpunit/phpunit": "^9.0",
+                "wp-phpunit/wp-phpunit": "^6.7",
+                "yoast/wp-test-utils": "^1.2"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fullworks_Free_Plugin_Lib\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Fullworks_Free_Plugin_Lib\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "alan",
+                    "email": "alan@fullworks.net"
+                }
+            ],
+            "description": "Library to add to free plugins, in compliance with wp.org",
+            "support": {
+                "source": "https://github.com/alanef/free_plugin_lib/tree/main",
+                "issues": "https://github.com/alanef/free_plugin_lib/issues"
+            },
+            "time": "2025-02-13T20:40:46+00:00"
+        },
+        {
+            "name": "alanef/wp_autoloader",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alanef/wp_autoloader.git",
+                "reference": "ab82c9014dd47efbe72cb3612c2a57715bcb212d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alanef/wp_autoloader/zipball/ab82c9014dd47efbe72cb3612c2a57715bcb212d",
+                "reference": "ab82c9014dd47efbe72cb3612c2a57715bcb212d",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Fullworks_WP_Autoloader\\": "src/"
+                }
+            },
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "alan",
+                    "email": "alan@fullworks.net"
+                }
+            ],
+            "description": "A custom autoloader to comply with WP class file names",
+            "support": {
+                "source": "https://github.com/alanef/wp_autoloader/tree/main",
+                "issues": "https://github.com/alanef/wp_autoloader/issues"
+            },
+            "time": "2024-10-24T10:54:40+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "alanef/free_plugin_lib": 20,
+        "alanef/wp_autoloader": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.4"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}
