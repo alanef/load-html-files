@@ -54,6 +54,3 @@ jobs:
           exclude-directories: |
             'vendor/composer'
             'vendor/bin'
-          exclude-checks: |
-            plugin_header_text_domain
-            PluginCheck.CodeAnalysis.SettingSanitization.register_settingDynamic
