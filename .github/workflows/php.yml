@@ -48,7 +48,7 @@ jobs:
         run: composer update
 
       - name: Run Gulp build
-        run: npx gulp build
+        run: composer run build
       - name: Run plugin check
         uses: wordpress/plugin-check-action@v1
         with:

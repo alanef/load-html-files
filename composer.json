@@ -12,7 +12,14 @@
     }
   },
   "scripts": {
-    "post-update-cmd": [ "composer update -d load-html-files"],
+    "post-update-cmd": ["composer update -d load-html-files" ],
+    "build": [
+      "rm -rf zipped",
+      "@composer install --no-dev",
+      "wp i18n make-pot ./load-html-files  ./load-html-files/languages/load-html-files.pot --skip-audit --exclude='./vendor'",
+      "mkdir -p zipped",
+      "zip -r zipped/load-html-files-free.zip load-html-files"
+    ],
     "phpcs": "phpcs load-html-files -s --standard=phpcs_sec.xml --ignore=*/vendor/*  --extensions=php",
     "compat:8.3": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.3",
     "compat:8.2": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.2",
