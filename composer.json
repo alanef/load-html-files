@@ -12,11 +12,12 @@
     }
   },
   "scripts": {
-    "post-update-cmd": ["composer update -d load-html-files" ],
+    "post-update-cmd": ["composer update -d load-html-files",
+      "wp i18n make-pot ./load-html-files  ./load-html-files/languages/load-html-files.pot --skip-audit --exclude='./vendor'"
+    ],
     "build": [
       "rm -rf zipped",
       "@composer install --no-dev",
-      "wp i18n make-pot ./load-html-files  ./load-html-files/languages/load-html-files.pot --skip-audit --exclude='./vendor'",
       "mkdir -p zipped",
       "zip -r zipped/load-html-files-free.zip load-html-files"
     ],
