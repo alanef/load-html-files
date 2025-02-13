@@ -1,17 +1,35 @@
-var project = 'load-html-files'; // Project Name.
-
-var gulp = require('gulp');
-var zip = require('gulp-zip');
-var del = require('del');
-var rename = require('gulp-rename');
-var gutil = require('gulp-util');
-var dirSync = require('gulp-directory-sync');
-var removeLines = require('gulp-remove-lines');
-var wpPot = require('gulp-wp-pot');
-var sort = require('gulp-sort');
+const project = 'load-html-files'; // Project Name.
 
 
 
+import gulp from 'gulp';
+import zip from 'gulp-zip';
+import del from 'del';
+import rename from 'gulp-rename';
+import gutil from 'gulp-util';
+import dirSync from 'gulp-directory-sync';
+
+
+
+
+
+
+
+import { exec } from 'child_process';
+
+
+// Task to run composer update --no-dev
+gulp.task('composer-update', (done) => {
+    exec('composer update --no-dev', (err, stdout, stderr) => {
+        if (err) {
+            console.error('Error running composer update --no-dev:', stderr);
+            done(err);
+        } else {
+            console.log(stdout);
+            done();
+        }
+    });
+});
 gulp.task('zip', (done) => {
     gulp.src('dist/**/*')
         .pipe(rename(function (file) {
@@ -50,21 +68,16 @@ gulp.task('sync', () => {
         .on('error', gutil.log);
 });
 
-gulp.task('translate', () => {
-    return gulp.src(['load-html-files/**/*.php', '!load-html-files/includes/{vendor,vendor/**}'])
-        .pipe(sort())
-        .pipe(wpPot({
-            domain: project,
-            package: project
-        }))
-        .on('error', gutil.log)
-        .pipe(gulp.dest('load-html-files/languages/' + project + '.pot'))
-        .pipe(gulp.dest('dist/languages/' + project + '.pot'));
-
+gulp.task('translate', (cb) => {
+    exec(' wp i18n make-pot ./load-html-files  ./load-html-files/languages/load-html-files.pot --skip-audit --exclude=\'./vendor\'', (err, stdout, stderr) => {
+        console.log(stdout);
+        console.log(stderr);
+        cb(err);
+    });
 });
 
 
-gulp.task('build', gulp.series('sync',  'clean', 'translate', 'zip'));
+gulp.task('build', gulp.series('composer-update','sync',  'clean', 'translate', 'zip'));
 
 
 

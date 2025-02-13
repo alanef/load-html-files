@@ -1,4 +1,8 @@
 {
+  "name": "alanef/load-html-files",
+  "description": "Wordpress plugin to create posts from html files",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
   "config": {
     "platform": {
       "php": "7.4.33"
@@ -8,9 +12,14 @@
     }
   },
   "scripts": {
-    "post-update-cmd": [
-      "composer update -d load-html-files",
-      "npx gulp build"
+    "post-update-cmd": ["composer update -d load-html-files",
+      "wp i18n make-pot ./load-html-files  ./load-html-files/languages/load-html-files.pot --skip-audit --exclude='./vendor'"
+    ],
+    "build": [
+      "rm -rf zipped",
+      "@composer install -d load-html-files --no-dev",
+      "mkdir -p zipped",
+      "zip -r zipped/load-html-files-free.zip load-html-files"
     ],
     "phpcs": "phpcs load-html-files -s --standard=phpcs_sec.xml --ignore=*/vendor/*  --extensions=php",
     "compat:8.3": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.3",
@@ -33,5 +42,8 @@
     "wp-coding-standards/wpcs": "^3.0",
     "phpcompatibility/phpcompatibility-wp": "*",
     "phpstan/phpstan": "*"
+  },
+  "require": {
+    "alanef/free_plugin_lib": "^1.0"
   }
 }

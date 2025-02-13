@@ -18,40 +18,7 @@ class Admin_Pages {
 		return $value;
 	}
 
-
-	public function plugin_action_links() {
-		add_filter(
-			'plugin_action_links_' . LOAD_HTML_FILES_PLUGIN_BASENAME,
-			array(
-				$this,
-				'add_plugin_action_links',
-			)
-		);
-	}
-
-	public function add_plugin_action_links( $links ) {
-		$links = array_merge(
-			array(
-				'<a href="' . esc_url( admin_url( 'edit.php?post_type=html_files&page=load-html-files-settings' ) ) . '">' . esc_html__( 'Settings' ) . '</a>',
-			),
-			$links
-		);
-
-		return $links;
-	}
 	public function settings_setup() {
-
-/*
-		add_menu_page(
-			$this->settings_title,
-			$this->settings_title,
-			'manage_options',
-            'load-html-files',
-			array( $this, 'settings_page' ),
-			'dashicons-upload',
-			70
-		);
-*/
 
 		$this->register_settings();
 		/* Vars */

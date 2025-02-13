@@ -2,6 +2,9 @@ name: PHP Composer
 
 on:
   push:
+    branches:
+      - master
+      - test-plugin-lib
   pull_request:
     branches:
       - master
@@ -15,14 +18,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm install
 
       - name: Validate composer.json and composer.lock
         run: composer validate --strict
 
       - name: Cache Composer packages
         id: composer-cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: vendor
           key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
@@ -32,8 +42,15 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
-      # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-      # Docs: https://getcomposer.org/doc/articles/scripts.md
-
       - name: Run phpcs suit
         run: composer run-script check
+
+      - name: Composer install for load-html-files
+        run: composer install -d load-html-files --no-dev
+      - name: Run plugin check
+        uses: wordpress/plugin-check-action@v1
+        with:
+          build-dir: './load-html-files'
+          exclude-directories: |
+            'vendor/composer'
+            'vendor/bin'

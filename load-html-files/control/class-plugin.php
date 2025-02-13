@@ -53,7 +53,6 @@ class Plugin {
 		add_action( 'add_meta_boxes', array( Admin::get_instance(), 'add_html_editor' ) );
 
 		add_action( 'admin_menu', array( Admin_Settings::get_instance(), 'settings_setup' ) );
-		add_action( 'init', array( Admin_Settings::get_instance(), 'plugin_action_links' ) );
 	}
 
 	public function hooks_core() {

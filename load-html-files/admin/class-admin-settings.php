@@ -2,7 +2,6 @@
 
 namespace Load_HTML_Files\Admin;
 
-use AlanEFPluginDonation\PluginDonation;
 use Load_HTML_Files\Admin\Admin_Pages;
 use Load_HTML_Files\Data\Cpt;
 
@@ -16,19 +15,10 @@ class Admin_Settings extends Admin_Pages {
 	protected $settings_page_id = 'html_files_page_load-html-files-settings';  // top level
 	protected $option_group = 'load-html-files';
 	protected $settings_title;
-	/** @var PluginDonation $donation */
-	private PluginDonation $donation;
 
 
 	public function __construct() {
 		$this->settings_title = esc_html__( 'Load HTML files', 'load-html-files' );
-		$this->donation       = new PluginDonation(
-			'load-html-files',
-			$this->settings_page_id,
-			'load-html-files/load-html-files.php',
-			admin_url( 'edit.php?post_type=html_files&page=load-html-files-settings' ),
-			$this->settings_title
-		);
 		parent::__construct();
 	}
 
@@ -44,8 +34,11 @@ class Admin_Settings extends Admin_Pages {
 		/* Register our setting. */
 		register_setting(
 			$this->option_group,                         /* Option Group */
-			'load-html-files-settings',                   /* Option Name */
-			array( $this, 'sanitize_settings' )          /* Sanitize Callback */
+			'load-html-files-settings',
+			array(
+				'sanitize_callback' => array( $this, 'sanitize_settings' ),
+				'default' => NULL,
+			)
 		);
 
 		/* Add settings menu page */
@@ -59,8 +52,11 @@ class Admin_Settings extends Admin_Pages {
 		);
 		register_setting(
 			$this->option_group,                         /* Option Group */
-			"{$this->option_group}-reset",                   /* Option Name */
-			array( $this, 'reset_sanitize' )          /* Sanitize Callback */
+			"{$this->option_group}-reset",
+			array(
+				'sanitize_callback' => array( $this, 'reset_sanitize' ),
+				'default' => NULL,
+			) /* Sanitize Callback */
 		);
 	}
 
@@ -91,7 +87,9 @@ class Admin_Settings extends Admin_Pages {
 		?>
         <table class="form-table">
             <tbody>
-			<?php $this->donation->display(); ?>
+            <tr>
+			<?php do_action('ffpl_ad_display') ?>
+            </tr>
             <tr>
                 <p><?php esc_html_e( 'This plugin periodically ( every 5 minutes) checks the unprocessed folder (wp-content/uploads/html_files/unprocessed ) for any files. The files can be in folders / subfolders', 'load-html-files' ); ?>
                 </p>
