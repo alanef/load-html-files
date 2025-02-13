@@ -43,6 +43,6 @@
     "phpstan/phpstan": "*"
   },
   "require": {
-    "alanef/free_plugin_lib": "*"
+    "alanef/free_plugin_lib": "^1.0"
   }
 }
