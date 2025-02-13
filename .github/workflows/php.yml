@@ -46,11 +46,11 @@ jobs:
         run: composer run-script check
 
       - name: Run Gulp build
-        run: composer run build
+        run: composer install --no-dev
       - name: Run plugin check
         uses: wordpress/plugin-check-action@v1
         with:
-          build-dir: './dist'
+          build-dir: './load-html-files'
           exclude-directories: |
             'vendor/composer'
             'vendor/bin'
