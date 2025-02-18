@@ -5,7 +5,7 @@ Donate link: https://ko-fi.com/wpalan
 Requires at least: 4.9
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -69,6 +69,9 @@ The plugin will look for new files every 5 minutes. If it finds any, it will loa
 
 
 == Changelog ==
+= 1.1.1 =
+* update library for opt in
+
 = 1.1 =
 * added new library for opt in
 

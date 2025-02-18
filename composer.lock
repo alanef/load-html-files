@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "alanef/free_plugin_lib",
-            "version": "1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alanef/free_plugin_lib.git",
-                "reference": "c9619cb4569b6459d86d3cfd0899bd760e598f29"
+                "reference": "ed52c33c73999a1fe1ee5a1b00581b9462111ac8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alanef/free_plugin_lib/zipball/c9619cb4569b6459d86d3cfd0899bd760e598f29",
-                "reference": "c9619cb4569b6459d86d3cfd0899bd760e598f29",
+                "url": "https://api.github.com/repos/alanef/free_plugin_lib/zipball/ed52c33c73999a1fe1ee5a1b00581b9462111ac8",
+                "reference": "ed52c33c73999a1fe1ee5a1b00581b9462111ac8",
                 "shasum": ""
             },
             "require": {
@@ -45,12 +45,12 @@
                     "email": "alan@fullworks.net"
                 }
             ],
-            "description": "A library to add to free plugins, in compliance with wp.org",
+            "description": "Library to add to free plugins, in compliance with wp.org",
             "support": {
                 "issues": "https://github.com/alanef/free_plugin_lib/issues",
-                "source": "https://github.com/alanef/free_plugin_lib/tree/1.0.0"
+                "source": "https://github.com/alanef/free_plugin_lib/tree/v1.0.1"
             },
-            "time": "2025-01-26T12:33:29+00:00"
+            "time": "2025-02-18T15:16:14+00:00"
         }
     ],
     "packages-dev": [

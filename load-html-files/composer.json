@@ -11,10 +11,6 @@
   ],
   "minimum-stability": "stable",
   "repositories": {
-    "free_plugin_lib": {
-      "type": "vcs",
-      "url": "https://github.com/alanef/free_plugin_lib"
-    },
     "alanef/wp_autoloader": {
       "type": "vcs",
       "url": "https://github.com/alanef/wp_autoloader"
@@ -22,7 +18,7 @@
   },
   "require": {
     "php": ">=7.4",
-    "alanef/free_plugin_lib": "dev-main",
+    "alanef/free_plugin_lib": "^v1.0.0",
     "alanef/wp_autoloader": "dev-main"
   }
 }

@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ca1fa99cf78edad2426f5e5a5df84a2c",
+    "content-hash": "0177d94e99d62fd558a0eff118d87fdc",
     "packages": [
         {
             "name": "alanef/free_plugin_lib",
-            "version": "dev-main",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/alanef/free_plugin_lib.git",
-                "reference": "43f4f538d247dd696a47ed08e4a5b4dde15c7daa"
+                "reference": "ed52c33c73999a1fe1ee5a1b00581b9462111ac8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/alanef/free_plugin_lib/zipball/43f4f538d247dd696a47ed08e4a5b4dde15c7daa",
-                "reference": "43f4f538d247dd696a47ed08e4a5b4dde15c7daa",
+                "url": "https://api.github.com/repos/alanef/free_plugin_lib/zipball/ed52c33c73999a1fe1ee5a1b00581b9462111ac8",
+                "reference": "ed52c33c73999a1fe1ee5a1b00581b9462111ac8",
                 "shasum": ""
             },
             "require": {
@@ -29,18 +29,13 @@
                 "wp-phpunit/wp-phpunit": "^6.7",
                 "yoast/wp-test-utils": "^1.2"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Fullworks_Free_Plugin_Lib\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Fullworks_Free_Plugin_Lib\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -52,10 +47,10 @@
             ],
             "description": "Library to add to free plugins, in compliance with wp.org",
             "support": {
-                "source": "https://github.com/alanef/free_plugin_lib/tree/main",
-                "issues": "https://github.com/alanef/free_plugin_lib/issues"
+                "issues": "https://github.com/alanef/free_plugin_lib/issues",
+                "source": "https://github.com/alanef/free_plugin_lib/tree/v1.0.1"
             },
-            "time": "2025-02-13T20:40:46+00:00"
+            "time": "2025-02-18T15:16:14+00:00"
         },
         {
             "name": "alanef/wp_autoloader",
@@ -99,7 +94,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "alanef/free_plugin_lib": 20,
         "alanef/wp_autoloader": 20
     },
     "prefer-stable": false,

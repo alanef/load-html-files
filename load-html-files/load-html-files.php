@@ -4,7 +4,7 @@
  * Plugin Name:       Load HTML Files
  * Plugin URI:        https://fullworksplugins.com/products/load-html-files/
  * Description:       Autocreate posts from HTML files
- * Version:           1.1
+ * Version:           1.1.1
  * Author:            Alan
  * Author URI:        https://fullworksplugins.com/
  * Requires at least: 4.9
@@ -35,7 +35,7 @@ if ( ! function_exists( 'Load_HTML_Files\run_Load_HTML_Files' ) ) {
 	define( 'LOAD_HTML_FILES_CONTENT_DIR', dirname( plugin_dir_path( __DIR__ ) ) );
 	define( 'LOAD_HTML_FILES_PLUGINS_TOP_DIR', plugin_dir_path( __DIR__ ) );
 	define( 'LOAD_HTML_FILES_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
-	define( 'LOAD_HTML_FILES_PLUGIN_VERSION', '1.1' );
+	define( 'LOAD_HTML_FILES_PLUGIN_VERSION', '1.1.1' );
 
 //	require_once LOAD_HTML_FILES_PLUGIN_DIR . 'control/autoloader.php';
 	require_once LOAD_HTML_FILES_PLUGIN_DIR . 'vendor/autoload.php';
