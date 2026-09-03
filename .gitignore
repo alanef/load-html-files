@@ -1,9 +1,24 @@
 .idea/
+.vscode/
+.directory
+.DS_Store
 dist/
+build/
 zipped/
+tmp-build/
 node_modules/
+/vendor/
+/load-html-files/vendor/
+/load-html-files/includes/vendor/
+.phpunit.result.cache
+*.phpunit.result.cache
+.wp-env.override.json
+.env
+.env.*
+!.env.example
+*.log
+__pycache__/
+# repository specific
 vendor/
 src/vendor/
-/vendor/
-.wp-env.override.json
 /.codebuddy/

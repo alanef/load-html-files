@@ -1,0 +1,157 @@
+# Managed by wordpress-plugin-boilerplate/tooling - fix there first, then run bin/sync-tooling.sh
+name: Plugin Check
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_call:
+
+permissions:
+  contents: read
+
+env:
+  PLUGIN_DIR: load-html-files
+  PLUGIN_FILE: load-html-files/load-html-files.php
+  VERSION_CONSTANT: "LOAD_HTML_FILES_PLUGIN_VERSION"
+
+jobs:
+  checks:
+    name: PHPCS, version consistency and Plugin Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get required PHP version
+        id: php_version
+        run: |
+          PHP_VERSION=$(grep -m1 "Requires PHP:" "$PLUGIN_FILE" | sed -E 's/.*Requires PHP:[[:space:]]*//' | tr -d ' \r')
+          echo "PHP_VERSION=${PHP_VERSION:-7.4}" >> $GITHUB_OUTPUT
+          echo "Plugin requires PHP ${PHP_VERSION:-7.4}"
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ steps.php_version.outputs.PHP_VERSION }}
+          coverage: none
+          tools: composer, wp-cli
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate --strict
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Run phpcs checks
+        run: composer run-script check
+
+      - name: Verify version consistency
+        run: |
+          PLUGIN_VERSION=$(grep -m1 -E "^[[:space:]]*\*?[[:space:]]*Version:" "$PLUGIN_FILE" | sed -E 's/.*Version:[[:space:]]*//' | tr -d ' \r')
+          README_VERSION=$(grep -m1 "Stable tag:" "$PLUGIN_DIR/readme.txt" | sed -E 's/.*Stable tag:[[:space:]]*//' | tr -d ' \r')
+
+          echo "Plugin header version: $PLUGIN_VERSION"
+          echo "Readme stable tag:     $README_VERSION"
+
+          if [ "$PLUGIN_VERSION" != "$README_VERSION" ]; then
+            echo "::error::Version mismatch between plugin header ($PLUGIN_VERSION) and readme.txt ($README_VERSION)"
+            exit 1
+          fi
+
+          if [ -n "$VERSION_CONSTANT" ]; then
+            CONSTANT_VERSION=$(grep -m1 "define.*$VERSION_CONSTANT" "$PLUGIN_FILE" | sed -E "s/.*['\"]([^'\"]+)['\"][[:space:]]*\).*/\1/")
+            echo "Version constant:      $CONSTANT_VERSION"
+            if [ "$PLUGIN_VERSION" != "$CONSTANT_VERSION" ]; then
+              echo "::error::Version mismatch between plugin header ($PLUGIN_VERSION) and $VERSION_CONSTANT ($CONSTANT_VERSION)"
+              exit 1
+            fi
+          fi
+          echo "All version numbers match: $PLUGIN_VERSION"
+
+      - name: Install WP-CLI dist-archive command
+        env:
+          # WP-CLI bundles Composer 2.2, whose github-oauth validation rejects
+          # the runner's GITHUB_TOKEN format ("contains invalid characters").
+          # setup-php persists that token in auth.json, so strip the persisted
+          # github-oauth from every composer home (default + wp-cli's own).
+          # Installing anonymously instead is flaky: shared runner IPs exhaust
+          # GitHub's unauthenticated API limit ("Could not authenticate against
+          # github.com"). So hand the same token back as http-basic, which
+          # Composer 2.2 accepts without the format check.
+          GITHUB_TOKEN: ""
+          COMPOSER_AUTH: '{"http-basic":{"github.com":{"username":"x-access-token","password":"${{ github.token }}"}}}'
+        run: |
+          composer config --global --unset github-oauth.github.com 2>/dev/null || true
+          rm -f "$HOME/.composer/auth.json" \
+                "$HOME/.config/composer/auth.json" \
+                "$HOME/.wp-cli/packages/auth.json" 2>/dev/null || true
+          wp package install wp-cli/dist-archive-command:v3.1.0
+
+      - name: Build plugin
+        run: |
+          composer run-script build
+          mkdir tmp-build
+          unzip -q "zipped/$PLUGIN_DIR-free.zip" -d tmp-build
+
+      - name: Run plugin check
+        uses: wordpress/plugin-check-action@v1
+        with:
+          build-dir: './tmp-build/${{ env.PLUGIN_DIR }}'
+
+  tests:
+    name: PHPUnit (wp-env)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get required PHP version
+        id: php_version
+        run: |
+          PHP_VERSION=$(grep -m1 "Requires PHP:" "$PLUGIN_FILE" | sed -E 's/.*Requires PHP:[[:space:]]*//' | tr -d ' \r')
+          echo "PHP_VERSION=${PHP_VERSION:-7.4}" >> $GITHUB_OUTPUT
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ steps.php_version.outputs.PHP_VERSION }}
+          coverage: none
+          tools: composer
+
+      - name: Install composer dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Install plugin dependencies
+        run: |
+          if [ -f "$PLUGIN_DIR/composer.json" ]; then
+            composer install -d "$PLUGIN_DIR" --no-dev --prefer-dist --no-progress
+          fi
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Start wp-env
+        run: npx wp-env start
+
+      - name: Run tests
+        run: npm test

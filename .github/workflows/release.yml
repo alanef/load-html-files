@@ -1,0 +1,140 @@
+# Managed by wordpress-plugin-boilerplate/tooling - fix there first, then run bin/sync-tooling.sh
+name: Build Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+      - '*.*.*'
+
+permissions:
+  contents: write
+
+env:
+  PLUGIN_DIR: load-html-files
+  PLUGIN_FILE: load-html-files/load-html-files.php
+  SVN_SLUG: load-html-files
+
+jobs:
+  run-checks:
+    uses: ./.github/workflows/checks.yml
+
+  build-release:
+    needs: run-checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get required PHP version
+        id: php_version
+        run: |
+          PHP_VERSION=$(grep -m1 "Requires PHP:" "$PLUGIN_FILE" | sed -E 's/.*Requires PHP:[[:space:]]*//' | tr -d ' \r')
+          echo "PHP_VERSION=${PHP_VERSION:-7.4}" >> $GITHUB_OUTPUT
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ steps.php_version.outputs.PHP_VERSION }}
+          tools: composer:v2, wp-cli
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Install WP-CLI dist-archive command
+        env:
+          # See checks.yml for why the token is handed back as http-basic.
+          GITHUB_TOKEN: ""
+          COMPOSER_AUTH: '{"http-basic":{"github.com":{"username":"x-access-token","password":"${{ github.token }}"}}}'
+        run: |
+          composer config --global --unset github-oauth.github.com 2>/dev/null || true
+          rm -f "$HOME/.composer/auth.json" \
+                "$HOME/.config/composer/auth.json" \
+                "$HOME/.wp-cli/packages/auth.json" 2>/dev/null || true
+          wp package install wp-cli/dist-archive-command:v3.1.0
+
+      - name: Build plugin for release
+        run: composer run-script build
+
+      - name: Get version
+        id: get_version
+        run: |
+          VERSION=$(grep -m1 -E "^[[:space:]]*\*?[[:space:]]*Version:" "$PLUGIN_FILE" | sed -E 's/.*Version:[[:space:]]*//' | tr -d ' \r')
+          echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "Building version $VERSION"
+
+      - name: Name the release zip
+        run: cp "zipped/$PLUGIN_DIR-free.zip" "zipped/$PLUGIN_DIR-${{ steps.get_version.outputs.VERSION }}.zip"
+
+      - name: Verify tag matches plugin version
+        run: |
+          PLUGIN_VERSION=${{ steps.get_version.outputs.VERSION }}
+          TAG_VERSION=${GITHUB_REF#refs/tags/}
+          TAG_VERSION=${TAG_VERSION#v}
+          echo "Plugin version: $PLUGIN_VERSION"
+          echo "Git tag version: $TAG_VERSION"
+          if [ "$PLUGIN_VERSION" != "$TAG_VERSION" ]; then
+            echo "::error::Version mismatch between plugin version ($PLUGIN_VERSION) and git tag ($TAG_VERSION)"
+            exit 1
+          fi
+          case "$PLUGIN_VERSION" in
+            *-*)
+              echo "::error::Refusing to release a pre-release version ($PLUGIN_VERSION)"
+              exit 1
+              ;;
+          esac
+          echo "Tag version matches plugin version: $PLUGIN_VERSION"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref }}
+          name: Release ${{ steps.get_version.outputs.VERSION }}
+          body: |
+            Release of Load HTML Files v${{ steps.get_version.outputs.VERSION }}
+
+            ## Changes
+            See the [change log](https://github.com/alanef/load-html-files/blob/master/CHANGELOG.md) for details.
+
+            ## Installation
+            Download the attached zip file and upload to your WordPress site.
+          draft: false
+          prerelease: false
+          files: |
+            zipped/load-html-files-${{ steps.get_version.outputs.VERSION }}.zip
+
+      - name: Deploy to WordPress.org
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          VERSION: ${{ steps.get_version.outputs.VERSION }}
+        run: |
+          if [ -z "$SVN_USERNAME" ] || [ -z "$SVN_PASSWORD" ]; then
+            echo "::error::SVN_USERNAME / SVN_PASSWORD secrets are not set - cannot deploy to WordPress.org"
+            exit 1
+          fi
+          sudo apt-get update -q
+          sudo apt-get install -y -q subversion
+
+          mkdir -p svn-tmp
+          cd svn-tmp
+          unzip -q "../zipped/$PLUGIN_DIR-free.zip"
+
+          svn checkout "https://plugins.svn.wordpress.org/$SVN_SLUG/" svn-repo --username "$SVN_USERNAME" --password "$SVN_PASSWORD" --no-auth-cache
+
+          if [ -d "svn-repo/tags/$VERSION" ]; then
+            echo "::error::Tag $VERSION already exists on WordPress.org SVN"
+            exit 1
+          fi
+
+          rsync -a --delete --exclude='.svn' "$PLUGIN_DIR/" svn-repo/trunk/
+
+          cd svn-repo/trunk
+          svn add --force * --auto-props --parents --depth infinity -q || true
+          svn status | grep '^!' | sed 's/^! *//' | xargs -r -I{} svn delete "{}" || true
+
+          cd ..
+          svn cp trunk "tags/$VERSION"
+          svn commit -m "Release version $VERSION" --username "$SVN_USERNAME" --password "$SVN_PASSWORD" --no-auth-cache
+
+          echo "Successfully deployed $VERSION to WordPress.org"

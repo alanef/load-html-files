@@ -61,3 +61,35 @@ Move the zip to the local `wordpress.org` directory and run the private script `
 
 ### Update this README.md ###
 Periodically update this file if process changes, or if more clarity or extended information is required.
+
+<!-- tooling:start (managed by wordpress-plugin-boilerplate/tooling - do not edit by hand) -->
+## Development
+
+This repository uses the standard Fullworks free-plugin tooling, documented in
+[wordpress-plugin-boilerplate](https://github.com/alanef/wordpress-plugin-boilerplate/blob/main/CLAUDE.md).
+
+[![Plugin Check](https://github.com/alanef/load-html-files/actions/workflows/checks.yml/badge.svg)](https://github.com/alanef/load-html-files/actions/workflows/checks.yml)
+
+```
+load-html-files/                     # repository root: development tooling
+├── .github/workflows/             # checks.yml on push/PR, release.yml on tag
+├── tests/                         # PHPUnit suite, run inside wp-env
+├── .wp-env.json                   # dev :8720, tests :8721
+├── composer.json                  # dev dependencies and quality scripts
+├── package.json                   # wp-env and test scripts
+├── phpunit.xml.dist / run-tests.sh
+└── load-html-files/                # the plugin (shipped as-is via .distignore)
+```
+
+```bash
+composer install && npm install        # dev tools
+npm run start                          # http://localhost:8720  (admin / password)
+composer run check                     # PHPCompatibility + security sniffs
+npm test                               # PHPUnit in the wp-env tests container
+composer run build                     # zipped/load-html-files-free.zip
+```
+
+Releases: set the version in the plugin header and `readme.txt`, update `CHANGELOG.md`,
+tag `vX.Y.Z` and push. CI builds the zip, creates the GitHub release and deploys to
+WordPress.org.
+<!-- tooling:end -->

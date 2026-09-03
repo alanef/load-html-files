@@ -1,8 +1,14 @@
 {
-  "name": "alanef/load-html-files",
-  "description": "Wordpress plugin to create posts from html files",
-  "type": "wordpress-plugin",
+  "name": "fullworks/load-html-files-project",
+  "description": "Development project for the Load HTML Files WordPress plugin",
+  "type": "project",
   "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "alan",
+      "email": "alan@fullworksplugins.com"
+    }
+  ],
   "config": {
     "platform": {
       "php": "7.4.33"
@@ -11,39 +17,42 @@
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
   },
+  "require-dev": {
+    "squizlabs/php_codesniffer": "3.*",
+    "wp-coding-standards/wpcs": ">=2.3.0",
+    "phpcompatibility/phpcompatibility-wp": "*",
+    "phpunit/phpunit": "^9.5",
+    "yoast/phpunit-polyfills": "^1.1",
+    "phpstan/phpstan": "*"
+  },
   "scripts": {
-    "post-update-cmd": ["composer update -d load-html-files",
-      "wp i18n make-pot ./load-html-files  ./load-html-files/languages/load-html-files.pot --skip-audit --exclude='./vendor'"
+    "post-update-cmd": [
+      "@plugin-update",
+      "@make-pot"
     ],
+    "plugin-update": "if [ -f load-html-files/composer.json ]; then composer update -d load-html-files; fi",
+    "make-pot": "mkdir -p load-html-files/languages && wp i18n make-pot ./load-html-files ./load-html-files/languages/load-html-files.pot --skip-audit --exclude='vendor,includes/vendor,node_modules'",
     "build": [
-      "rm -rf zipped",
-      "@composer install -d load-html-files --no-dev",
+      "if [ -f load-html-files/composer.json ]; then composer install -d load-html-files --no-dev; fi",
       "mkdir -p zipped",
-      "zip -r zipped/load-html-files-free.zip load-html-files"
+      "wp dist-archive load-html-files zipped/load-html-files-free.zip --force"
     ],
-    "phpcs": "phpcs load-html-files -s --standard=phpcs_sec.xml --ignore=*/vendor/*  --extensions=php",
-    "compat:8.3": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.3",
-    "compat:8.2": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.2",
-    "compat:8.1": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.1",
-    "compat:8.0": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 8.0",
-    "compat:7.4": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 7.4",
-    "compat:5.6": "./vendor/bin/phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/*  --extensions=php --runtime-set testVersion 5.6",
+    "phpcs": "phpcs load-html-files -s --standard=phpcs_sec.xml --ignore=*/vendor/* --extensions=php",
+    "compat:8.4": "phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/* --extensions=php --runtime-set testVersion 8.4",
+    "compat:8.3": "phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/* --extensions=php --runtime-set testVersion 8.3",
+    "compat:8.2": "phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/* --extensions=php --runtime-set testVersion 8.2",
+    "compat:8.1": "phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/* --extensions=php --runtime-set testVersion 8.1",
+    "compat:8.0": "phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/* --extensions=php --runtime-set testVersion 8.0",
+    "compat:7.4": "phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/* --extensions=php --runtime-set testVersion 7.4",
     "check": [
+      "@compat:8.4",
       "@compat:8.3",
       "@compat:8.2",
       "@compat:8.1",
       "@compat:8.0",
       "@compat:7.4",
       "@phpcs"
-    ]
-  },
-  "require-dev": {
-    "squizlabs/php_codesniffer": "3.*",
-    "wp-coding-standards/wpcs": "^3.0",
-    "phpcompatibility/phpcompatibility-wp": "*",
-    "phpstan/phpstan": "*"
-  },
-  "require": {
-    "alanef/free_plugin_lib": "^1.0"
+    ],
+    "test": "npm test"
   }
 }

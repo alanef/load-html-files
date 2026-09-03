@@ -1,30 +1,20 @@
 {
-  "devDependencies": {
-    "del": "6.1.1",
-    "gulp": "latest",
-    "gulp-directory-sync": "latest",
-    "gulp-freemius-deploy": "^1.0.11",
-    "gulp-notify": "latest",
-    "gulp-remove-lines": "latest",
-    "gulp-rename": "latest",
-    "gulp-sort": "latest",
-    "gulp-util": "latest",
-    "gulp-wp-pot": "latest",
-    "gulp-zip": "latest",
-    "sass": "^1.53.0"
-  },
-  "name": "load-html-files",
+  "name": "load-html-files-project",
   "version": "1.0.0",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
+  "private": true,
+  "description": "Development project for the Load HTML Files WordPress plugin",
   "author": "Alan Fuller <alan@fullworks.net>",
-  "license": "GPL",
-  "description": "",
-  "dependencies": {
-    "npm": "^6.0.0"
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "wp-env": "wp-env",
+    "start": "wp-env start",
+    "stop": "wp-env stop",
+    "destroy": "wp-env destroy",
+    "test": "./run-tests.sh",
+    "test:unit": "./run-tests.sh",
+    "build": "composer run-script build"
+  },
+  "devDependencies": {
+    "@wordpress/env": "^10.25.0"
   }
 }
