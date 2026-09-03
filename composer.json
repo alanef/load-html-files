@@ -35,8 +35,7 @@
     "build": [
       "if [ -f load-html-files/composer.json ]; then composer install -d load-html-files --no-dev; fi",
       "mkdir -p zipped",
-      "wp dist-archive load-html-files zipped/load-html-files-free.zip --force",
-      "zip -qd zipped/load-html-files-free.zip load-html-files/.distignore >/dev/null 2>&1 || true"
+      "wp dist-archive load-html-files zipped/load-html-files-free.zip --force"
     ],
     "phpcs": "phpcs load-html-files -s --standard=phpcs_sec.xml --ignore=*/vendor/* --extensions=php",
     "compat:8.4": "phpcs load-html-files -s --standard=PHPCompatibilityWP --ignore=*/vendor/* --extensions=php --runtime-set testVersion 8.4",
