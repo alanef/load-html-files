@@ -9,6 +9,7 @@ tmp-build/
 node_modules/
 /vendor/
 /load-html-files/vendor/
+/load-html-files/composer.lock
 /load-html-files/includes/vendor/
 .phpunit.result.cache
 *.phpunit.result.cache
