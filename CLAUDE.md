@@ -31,13 +31,63 @@ npm test -- --filter Foo          # pass PHPUnit args through
 composer run build                # zipped/load-html-files-free.zip via wp dist-archive
 ```
 
+## Changelog and versions
+
+One changelog: `load-html-files/changelog.txt`, wp.org style, shipped in the zip and published
+to the KB by `update-changelog.sh` where `.env.wordpress` exists. `readme.txt` may link to it
+or repeat recent entries, but is not the source. Every user-visible change adds a typed bullet
+under `= Unreleased =` at the top, in the same commit:
+
+```
+= Unreleased =
+* Fixed: what was wrong, and for whom
+* Added: / Changed: / Deprecated: / Removed: / Security:
+```
+
+While developing, carry a prerelease suffix (`1.4.0-alpha.1`, bump only the `N`); release.yml
+refuses to publish one. Releasing drops it.
+
 ## Release
 
-1. Update `CHANGELOG.md` (move Unreleased to the version and date).
-2. Set the version in every location above (no prerelease suffix).
-3. `composer run check && npm test`.
-4. Commit, tag `vX.Y.Z`, push branch and tag.
-5. The `Build Release` workflow re-runs the checks, creates the GitHub release with the zip
-   attached and deploys trunk + tag to WordPress.org SVN (needs `SVN_USERNAME` and
-   `SVN_PASSWORD` repository secrets).
+Always through the commands, never by hand:
+
+```
+/tk-release X.Y.Z    # scripts/release/bump-version.sh: every version location + changelog, read back
+                     # scripts/release/check-dependencies.sh: shipped composer deps block, tooling warns
+                     # then commit the release ("Release X.Y.Z") and push
+                     # scripts/release/run-tests-and-mark.sh X.Y.Z: CI's gates locally (wp-env running)
+                     # commit .sdlc/releases/X.Y.Z/ evidence and push
+/tk-deploy live      # .claude/commands/deploy-live.md: preconditions, confirm, tag vX.Y.Z, watch CI
+```
+
+`/tk-release` runs the test hook before you commit, so run it **again after** the release
+commit: its marker names the commit, and `/tk-deploy live` refuses it if plugin code changed
+since. The tag runs `Build Release`,
+which re-runs the checks, creates the GitHub release with the zip attached, then deploys to
+whatever the plugin's `Type:` calls for.
+
+## Where a release goes
+
+`Build Release` reads a `Type:` header from the plugin's `readme.txt` and deploys
+accordingly. Every plugin gets a GitHub release; `Type:` only decides what else:
+
+| `readme.txt` | GitHub | WordPress.org | Freemius |
+|---|---|---|---|
+| *(no `Type:` header)* | yes | | |
+| `Type: free` | yes | yes | |
+| `Type: freemium` | yes | yes | yes |
+| `Type: premium` | yes | | yes |
+
+Omitting the header is the safe default -- a plugin is never published anywhere
+public by accident. A header that is present but unrecognised **fails the
+release**, because that is a typo rather than a choice, and silently falling back
+to GitHub-only is how a plugin quietly stops reaching WordPress.org for months.
+The resolved targets are echoed in the job log and the run summary.
+
+With no `Type:` header the plugin also **updates itself from its GitHub releases** (managed
+`includes/class-github-updater.php` and `Update URI:` header, both added by the sync). Adding a
+`Type:` and re-syncing removes them, since WordPress.org forbids off-site updates.
+
+WordPress.org deploys need the `SVN_USERNAME` and `SVN_PASSWORD` repository
+secrets; the step fails loudly if they are missing or the SVN tag already exists.
 <!-- tooling:end -->

@@ -1,0 +1,8 @@
+= 1.1.1 =
+* update library for opt in
+
+= 1.1 =
+* added new library for opt in
+
+= 1.0.0 =
+* First version.
