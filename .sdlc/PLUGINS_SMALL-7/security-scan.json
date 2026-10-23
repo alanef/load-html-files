@@ -1,0 +1,45 @@
+{
+  "scan_date": "2026-10-23T10:00:00Z",
+  "scanned_by": "AI Assistant",
+  "files_analyzed": [
+    "load-html-files/composer.json",
+    "load-html-files/control/class-uninstall.php",
+    "load-html-files/control/autoloader.php",
+    "free_plugin_lib v1.3.0..v1.3.3: src/Main.php, src/Classes/Email.php, src/Assets/scripts/main.js"
+  ],
+  "commit_range": {
+    "load-html-files": "1f982b1 (plus af5adaa, untracked)",
+    "free_plugin_lib": "84d3d1f..4f34052"
+  },
+  "findings": [
+    {
+      "severity": "Info",
+      "category": "A04: Insecure Design",
+      "file": "load-html-files/control/class-uninstall.php",
+      "description": "Uninstall narrowed to settings and opt-in status. It removes a destructive path (force-deleting user posts and uploads) that would otherwise have started running with library 1.3.x.",
+      "recommendation": "None."
+    },
+    {
+      "severity": "Info",
+      "category": "A01: Broken Access Control",
+      "file": "load-html-files/control/autoloader.php",
+      "description": "ABSPATH guard added to an unused file that executed spl_autoload_register when requested directly.",
+      "recommendation": "None."
+    }
+  ],
+  "summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "info": 2,
+    "total": 2
+  },
+  "recommendation": "PASS",
+  "blocking_issues": [],
+  "instrument_validation": {
+    "library": "see stop-user-enumeration .sdlc/PLUGINS_SMALL-6/security-scan.json: sanitisation sweep validated against 958c57d^; guard-before-state-change sweep UNVALIDATED (no prior fix of that class), manual review instead. 1.3.3 adds a manage_options check to handle_skip_optin and a read-only map fallback in Email."
+  },
+  "notes": "No new inputs or endpoints in LHF. The opt-in posts only an email address and site URL to the mailing webhook, as before (now the current service). The shipped composer tree has no advisories (DEPENDENCY_AUDIT.md).",
+  "issue_id": "PLUGINS_SMALL-7"
+}
