@@ -1,6 +1,12 @@
 = Unreleased =
+* Added: a dismissable setup notice that links to the opt-in screen, where you can opt in or skip
+* Changed: if you leave the opt-in screen without choosing, it is shown again from the plugin's settings page until you click Allow or Skip
+* Changed: opt-ins now go to our current mailing service
+* Removed: the advert on the plugin's settings page
 * Changed: tested up to WordPress 7.1
 * Security: the unused control/autoloader.php now refuses direct access
+* Fixed: deleting the plugin now removes its settings and opt-in choice. Your HTML files, their categories and uploaded files are kept
+* Changed: updated the bundled opt-in library to 1.3.3
 
 = 1.1.1 =
 * update library for opt in
