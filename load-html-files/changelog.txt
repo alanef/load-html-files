@@ -1,4 +1,4 @@
-= Unreleased =
+= 1.2.0 =
 * Added: a dismissable setup notice that links to the opt-in screen, where you can opt in or skip
 * Changed: if you leave the opt-in screen without choosing, it is shown again from the plugin's settings page until you click Allow or Skip
 * Changed: opt-ins now go to our current mailing service
