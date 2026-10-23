@@ -18,7 +18,6 @@ class Admin_Settings extends Admin_Pages {
 
 
 	public function __construct() {
-		$this->settings_title = esc_html__( 'Load HTML files', 'load-html-files' );
 		parent::__construct();
 	}
 
@@ -31,6 +30,9 @@ class Admin_Settings extends Admin_Pages {
 	}
 
 	public function register_settings() {
+		// Translated here, on admin_menu, because the class is built before init.
+		$this->settings_title = __( 'Load HTML files', 'load-html-files' );
+
 		/* Register our setting. */
 		register_setting(
 			$this->option_group,                         /* Option Group */
