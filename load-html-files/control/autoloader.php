@@ -23,6 +23,10 @@
  *
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Autoloader based on tutorial by
  * Tom McFarlin https://tommcfarlin.com/  Licensed    GPL-2.0+

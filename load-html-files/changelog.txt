@@ -1,3 +1,7 @@
+= Unreleased =
+* Changed: tested up to WordPress 7.1
+* Security: the unused control/autoloader.php now refuses direct access
+
 = 1.1.1 =
 * update library for opt in
 

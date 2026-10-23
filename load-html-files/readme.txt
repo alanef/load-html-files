@@ -3,7 +3,7 @@ Contributors: alanfuller
 Tags: load html files, load html, html files,import html, sailwave
 Donate link: https://ko-fi.com/wpalan
 Requires at least: 4.9
-Tested up to: 6.7
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 1.1.1
 Type: free
