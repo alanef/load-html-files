@@ -54,6 +54,14 @@ All must hold, otherwise stop:
   key). The file is gitignored and is lost when a repo is re-cloned or moved; a release
   without it ships with a stale public changelog. Continue only on an explicit yes that
   accepts this, and remember it for the final report.
+- **No vulnerability detail in the public changelog** (Alan, 8 Nov 2026). The changelog is
+  public, and many sites update late, so it must not say what a vulnerability fixed in this
+  release was or how it worked. Every security fix is the one bullet
+  `* Security: improved security`. This check must print nothing:
+  `awk -v h="= $V =" '$0==h{f=1;next} /^= /{f=0} f && /^\* Security:/ && $0!="* Security: improved security"' $P/load-html-files/changelog.txt`.
+  Then read every bullet in the section. A behaviour change can stay, worded without its
+  security reason, but stop on any that names an attack, an attacker's role, a payload, or
+  where the hole was (for example XSS, injection, bypass, a Contributor could, `<script>`).
 - The latest `checks.yml` run on `master` is for HEAD and succeeded:
   `gh run list -R alanef/load-html-files --workflow checks.yml --branch master --limit 1 --json headSha,status,conclusion`
   shows `headSha` = HEAD, `completed`, `success`.
@@ -146,14 +154,18 @@ for c in $(git -C $P log --format=%H --grep="^$ID\b" -E $PREV..$TAG); do
 done | grep -q '^load-html-files/' && echo shipped || echo non-shipping
 ```
 
+Read the project's fields first with `get_issue_fields_schema`, because projects differ:
+PLUGINS_SMALL has no `Deployed` Stage, no Resolution and no Fix versions. Never create a field,
+value or version; report anything skipped.
+
 For each issue:
 
-- Stage: `Deployed`, **only if it shipped plugin code**. An issue whose commits in range touch
-  only paths outside `load-html-files/` (tests, tooling, marketing, docs) keeps its Stage as it is.
-- Resolution: `Done`, if the issue is not already resolved.
-- Fix versions: `$V`, only if that version already exists in the project's Fix versions
-  bundle (check the field schema with `get_issue_fields_schema`). If it does not, say so in
-  the report and leave the field alone; never create the version.
+- Stage: `Deployed`, or the project's final value (`Done`) if it has no `Deployed`, **only if it
+  shipped plugin code**. An issue whose commits in range touch only paths outside
+  `load-html-files/` (tests, tooling, marketing, docs) keeps its Stage as it is.
+- Resolution: `Done`, if the project has the field and the issue is not already resolved.
+- Fix versions: `$V`, only if the project has the field and that version already exists in its
+  bundle. If not, say so in the report and leave the field alone.
 - Comment, on every issue in range including non-shipping ones: `Released in $V`, with the
   GitHub release link (`https://github.com/alanef/load-html-files/releases/tag/$TAG`) and, for anything
   user-visible, one line on what changed.

@@ -15,7 +15,7 @@ the Plugin Check errors (Tested up to 7.1, a direct-access guard).
 
 ### Fixes
 - Deleting the plugin removes its settings and opt-in choice. HTML files, their categories and uploaded files are kept.
-- Security: the unused control/autoloader.php refuses direct access.
+- Security: improved security.
 
 ### Improvements
 - The opt-in screen is shown again from the plugin's settings page until you click Allow or Skip.

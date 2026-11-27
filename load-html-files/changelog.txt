@@ -4,7 +4,7 @@
 * Changed: opt-ins now go to our current mailing service
 * Removed: the advert on the plugin's settings page
 * Changed: tested up to WordPress 7.1
-* Security: the unused control/autoloader.php now refuses direct access
+* Security: improved security
 * Fixed: deleting the plugin now removes its settings and opt-in choice. Your HTML files, their categories and uploaded files are kept
 * Fixed: the "translation loading for the load-html-files domain was triggered too early" notice on WordPress 6.7 and later. On sites that display PHP notices it could break the admin login redirect
 * Changed: updated the bundled opt-in library to 1.3.3
