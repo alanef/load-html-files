@@ -126,6 +126,12 @@ jobs:
           exit 1
 
       - name: Build plugin
+        env:
+          # The dist-archive step deleted every auth.json, so composer here would run
+          # anonymously. A rate-limited runner then falls back to an SSH clone of vcs
+          # repositories (alanef/wp_autoloader) and fails with "Permission denied
+          # (publickey)". Same http-basic token as the dist-archive step.
+          COMPOSER_AUTH: '{"http-basic":{"github.com":{"username":"x-access-token","password":"${{ github.token }}"}}}'
         run: |
           composer run-script build
           mkdir tmp-build
